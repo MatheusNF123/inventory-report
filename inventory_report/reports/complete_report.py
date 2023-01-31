@@ -1,31 +1,23 @@
 from collections import Counter
-# from inventory_report.reports.simple_report import SimpleReport
+
+from inventory_report.reports.simple_report import SimpleReport
 
 
-class CompleteReport:
+class CompleteReport(SimpleReport):
     @staticmethod
     def generate(lista: list[dict]):
+        resultSuperClass = SimpleReport.generate(lista)
         empresa = []
+        stra = ""
         for i in lista:
             empresa.append(i["nome_da_empresa"])
 
         numeroEmpresa = Counter(empresa).most_common()
-        return numeroEmpresa
+        for i in numeroEmpresa:
+            stra += f"- {i[0]}: {i[1]}\n"
 
-
-# super().generate(lista)
-print(
-    CompleteReport.generate(
-        [
-            {
-                "id": 1,
-                "nome_do_produto": "MESA",
-                "nome_da_empresa": "Forces of Nature",
-                "data_de_fabricacao": "2022-05-04",
-                "data_de_validade": "2023-02-09",
-                "numero_de_serie": "FR48",
-                "instrucoes_de_armazenamento": "Conservar ao abrigo de luz",
-            }
-        ]
-    )
-)
+        return (
+            f"{resultSuperClass}\n"
+            f"Produtos estocados por empresa:\n"
+            f"{stra}"
+        )
