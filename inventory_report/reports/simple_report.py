@@ -6,11 +6,11 @@ class SimpleReport:
     def generate(lista: list[dict]):
         data = min(lista, key=lambda x: x["data_de_fabricacao"])
         dataV = min(lista, key=lambda x: x["data_de_validade"])
-        a = []
+        empresa = []
         for i in lista:
-            a.append(i["nome_da_empresa"])
+            empresa.append(i["nome_da_empresa"])
 
-        numeroEmpresa = Counter(a).most_common()[0][0]
+        numeroEmpresa = Counter(empresa).most_common()[0][0]
 
         return f"""Data de fabricação mais antiga: {data['data_de_fabricacao']}
 Data de validade mais próxima: {dataV['data_de_validade']}
