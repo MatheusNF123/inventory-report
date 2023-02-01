@@ -11,6 +11,7 @@ class InventoryRefactor:
         lista = self.importer.import_data(path)
 
         self.data += lista
+        return self.data
 
     def __iter__(self):
         return InventoryIterator(self.data)
