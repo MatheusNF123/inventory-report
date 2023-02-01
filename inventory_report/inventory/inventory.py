@@ -49,7 +49,7 @@ class OpenXML:
             for i in dict_xml["dataset"]["record"]:
                 dicts = {
                     "id": i["id"],
-                    "nome_do_produto": i["nome_da_empresa"],
+                    "nome_do_produto": i["nome_do_produto"],
                     "nome_da_empresa": i["nome_da_empresa"],
                     "data_de_fabricacao": i["data_de_fabricacao"],
                     "data_de_validade": i["data_de_validade"],
@@ -67,7 +67,6 @@ class Inventory:
     @staticmethod
     def import_data(path: str, typeReport):
         lista = OpenSupport(path).file
-        # return lista
 
         if typeReport == "simples":
             return SimpleReport.generate(lista)
