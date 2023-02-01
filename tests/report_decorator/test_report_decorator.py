@@ -4,8 +4,6 @@ from inventory_report.reports.complete_report import CompleteReport
 
 
 def test_decorar_relatorio():
-    # lista = CsvImporter.import_data("inventory_report/data/inventory.csv")
-
     lista = [
         {
             "id": "1",
