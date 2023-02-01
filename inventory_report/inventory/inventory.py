@@ -3,8 +3,8 @@ import json
 
 import xmltodict
 
-# from inventory_report.reports.simple_report import SimpleReport
-# from inventory_report.reports.complete_report import CompleteReport
+from inventory_report.reports.simple_report import SimpleReport
+from inventory_report.reports.complete_report import CompleteReport
 
 
 class OpenSupport:
@@ -44,20 +44,32 @@ class OpenXML:
     def open(path):
         with open(path) as file:
             xml_file = file.read()
+            lista = []
             dict_xml = xmltodict.parse(xml_file)
-            # dict_xml = [chave.attrib for chave in root_xml]
-            return dict_xml
+            for i in dict_xml["dataset"]["record"]:
+                dicts = {
+                    "id": i["id"],
+                    "nome_do_produto": i["nome_da_empresa"],
+                    "nome_da_empresa": i["nome_da_empresa"],
+                    "data_de_fabricacao": i["data_de_fabricacao"],
+                    "data_de_validade": i["data_de_validade"],
+                    "numero_de_serie": i["numero_de_serie"],
+                    "instrucoes_de_armazenamento": i[
+                        "instrucoes_de_armazenamento"
+                    ],
+                }
+                lista.append(dicts)
+
+            return lista
 
 
 class Inventory:
     @staticmethod
     def import_data(path: str, typeReport):
         lista = OpenSupport(path).file
-        return lista
-        # if typeReport == "simples":
-        #     return SimpleReport.generate(lista)
-        # if typeReport == "completo":
-        #     return CompleteReport.generate(lista)
+        # return lista
 
-
-print(Inventory.import_data("inventory_report/data/inventory.xml", "simples"))
+        if typeReport == "simples":
+            return SimpleReport.generate(lista)
+        if typeReport == "completo":
+            return CompleteReport.generate(lista)
