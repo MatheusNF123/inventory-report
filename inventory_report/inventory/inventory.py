@@ -1,8 +1,7 @@
 import csv
 import json
-from xml.etree import cElementTree
 
-# import xmltodict
+import xmltodict
 
 # from inventory_report.reports.simple_report import SimpleReport
 # from inventory_report.reports.complete_report import CompleteReport
@@ -43,11 +42,11 @@ class OpenJSON:
 class OpenXML:
     @staticmethod
     def open(path):
-        # with cElementTree.parse(path) as file:
-        xml_file = cElementTree.parse(path)
-        root_xml = xml_file.getroot()
-        dict_xml = [chave.attrib for chave in root_xml]
-        return dict_xml
+        with open(path) as file:
+            xml_file = file.read()
+            dict_xml = xmltodict.parse(xml_file)
+            # dict_xml = [chave.attrib for chave in root_xml]
+            return dict_xml
 
 
 class Inventory:
