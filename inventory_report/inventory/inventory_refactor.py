@@ -1,4 +1,3 @@
-# from inventory_report.importer.csv_importer import CsvImporter
 from inventory_report.inventory.inventory_iterator import InventoryIterator
 
 
