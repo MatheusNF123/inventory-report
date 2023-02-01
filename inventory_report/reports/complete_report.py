@@ -7,17 +7,15 @@ class CompleteReport(SimpleReport):
     @staticmethod
     def generate(lista: list[dict]):
         resultSuperClass = SimpleReport.generate(lista)
-        empresa = []
-        stra = ""
-        for i in lista:
-            empresa.append(i["nome_da_empresa"])
+        infoCompany = ""
+        empresa = [i["nome_da_empresa"] for i in lista]
 
         numeroEmpresa = Counter(empresa).most_common()
         for i in numeroEmpresa:
-            stra += f"- {i[0]}: {i[1]}\n"
+            infoCompany += f"- {i[0]}: {i[1]}\n"
 
         return (
             f"{resultSuperClass}\n"
             f"Produtos estocados por empresa:\n"
-            f"{stra}"
+            f"{infoCompany}"
         )

@@ -10,5 +10,4 @@ class CsvImporter(Importer):
 
         with open(path) as file:
             dicts = csv.DictReader(file)
-            lista = [i for i in dicts]
-            return lista
+            return list(dicts)

@@ -6,9 +6,7 @@ class SimpleReport:
     def generate(lista: list[dict]):
         data = min(lista, key=lambda x: x["data_de_fabricacao"])
         dataV = min(lista, key=lambda x: x["data_de_validade"])
-        empresa = []
-        for i in lista:
-            empresa.append(i["nome_da_empresa"])
+        empresa = [i["nome_da_empresa"] for i in lista]
 
         numeroEmpresa = Counter(empresa).most_common()[0][0]
 

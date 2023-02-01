@@ -26,8 +26,7 @@ class OpenCSV:
     def open(path):
         with open(path) as file:
             dicts = csv.DictReader(file)
-            lista = [i for i in dicts]
-            return lista
+            return list(dicts)
 
 
 class OpenJSON:
@@ -35,8 +34,7 @@ class OpenJSON:
     def open(path):
         with open(path) as file:
             dicts = json.load(file)
-            lista = [i for i in dicts]
-            return lista
+            return list(dicts)
 
 
 class OpenXML:
@@ -46,7 +44,6 @@ class OpenXML:
             xml_file = file.read()
             dict_xml = xmltodict.parse(xml_file)
             list_dict_product = dict_xml["dataset"]["record"]
-
             return list_dict_product
 
 
