@@ -4,20 +4,6 @@ from inventory_report.importer.xml_importer import XmlImporter
 from inventory_report.inventory.inventory_refactor import InventoryRefactor
 import sys
 
-from inventory_report.reports.complete_report import CompleteReport
-
-from inventory_report.reports.simple_report import SimpleReport
-
-
-def verify_type(typeReport: str, lista: list[dict]):
-    if typeReport == 'simples':
-        print(SimpleReport.generate(lista), end="")
-
-    elif typeReport == 'completo':
-        print(CompleteReport.generate(lista), end="")
-    else:
-        raise ValueError('tipo invalido')
-
 
 def main():
     if len(sys.argv) < 3:
@@ -36,4 +22,4 @@ def main():
 
     lista = inventory.import_data(sys.argv[1], sys.argv[2])
 
-    verify_type(sys.argv[2], lista)
+    print(lista, end="")

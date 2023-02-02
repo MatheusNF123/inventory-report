@@ -1,4 +1,6 @@
 from inventory_report.inventory.inventory_iterator import InventoryIterator
+from inventory_report.reports.complete_report import CompleteReport
+from inventory_report.reports.simple_report import SimpleReport
 
 
 class InventoryRefactor:
@@ -8,9 +10,12 @@ class InventoryRefactor:
 
     def import_data(self, path: str, typeReport: str):
         lista = self.importer.import_data(path)
-
         self.data += lista
-        return self.data
+
+        if typeReport == "simples":
+            return SimpleReport.generate(self.data)
+        if typeReport == "completo":
+            return CompleteReport.generate(self.data)
 
     def __iter__(self):
         return InventoryIterator(self.data)
